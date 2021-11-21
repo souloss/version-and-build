@@ -1,0 +1,8 @@
+#!/bin/bash
+
+GITREPO="$(git remote -v)"
+if [[ "${?}" != "0" ]]; then
+    echo "Couldn't get remote verbose of the git repository. Setting to 'unknown' instead"
+    GITREPO="unknown"
+fi
+echo "${GITREPO}"

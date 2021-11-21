@@ -1,0 +1,5 @@
+include ./BUILD_GITSHA
+include ./BUILD_GITREPO
+include ./BUILD_DATE
+include ./BUILD_LASTCOMMITDATE
+recursive-include static/ *
