@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -e
+
+PROJECT_DIR=python_demo
+pushd ${PROJECT_DIR} 
+
+GITSHA="$(scripts/write-git-sha)"
+GITREPO="$(scripts/write-git-repo)"
+BUILDDATE="$(scripts/write-build-date)"
+COMMITDATE="$(scripts/write-commit-date)"
+echo "${GITSHA}" > BUILD_GITSHA
+echo "${GITREPO}" > BUILD_GITREPO
+echo "${BUILDDATE}" > BUILD_DATE
+echo "${COMMITDATE}" > BUILD_LASTCOMMITDATE
+
+rm -rf build && pyinstaller -F main.py --collect-datas="python_demo"
+
+rm -f {BUILD_GITSHA,BUILD_GITREPO,BUILD_DATE,BUILD_LASTCOMMITDATE,*.spec}
+
+popd 

@@ -1,0 +1,23 @@
+#!/bin/bash
+
+set -e
+
+PROJECT_DIR=python_demo
+
+pushd ${PROJECT_DIR} 
+VERSION="$(python3 setup.py --version)"
+
+GITSHA="$(scripts/write-git-sha)"
+GITREPO="$(scripts/write-git-repo)"
+BUILDDATE="$(scripts/write-build-date)"
+COMMITDATE="$(scripts/write-commit-date)"
+echo "${GITSHA}" > BUILD_GITSHA
+echo "${GITREPO}" > BUILD_GITREPO
+echo "${BUILDDATE}" > BUILD_DATE
+echo "${COMMITDATE}" > BUILD_LASTCOMMITDATE
+
+pip3 install -r requirement-dev.txt && pip3 install -r requirement.txt && python3 setup.py sdist bdist_wheel
+
+rm -rf {BUILD_GITSHA,BUILD_GITREPO,BUILD_DATE,BUILD_LASTCOMMITDATE}
+
+popd

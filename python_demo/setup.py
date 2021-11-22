@@ -25,7 +25,7 @@ setup(
       author='everything developers',
       maintainer='witchc',
       license='MIT',
-      package_dir={"project_a":""},
+      package_dir={"python_demo":""},
       packages = find_packages("../"),
       include_package_data=True,
       zip_safe=False, 
