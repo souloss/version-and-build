@@ -36,6 +36,7 @@ def get_version_info(dictize=True):
     result = {
         f"{__project_name__} version":__version__,
         platform.python_implementation():platform.python_version(),
+        "platform":platform.platform(),
         "OpenSSL version":ssl.OPENSSL_VERSION,
         "Build date":get_build_date(),
         "Last commit date":get_last_commit_date(),
